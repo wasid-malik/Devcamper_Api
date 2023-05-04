@@ -8,32 +8,32 @@ const BootcampSchema = new mongoose.Schema({
         trim: true,
         maxlength: [50, 'Name can not be more than 50 characters']
     },
-    slug: string,
+    slug: String,
     description: {
-        type:String,
+        type: String,
         required: [true, 'please add a name'],
-        maxlength: [50, 'Name can not be more than 50 characters']
+        //maxlength: [50, 'Name can not be more than 50 characters']
     },
     website: {
-        type:String,
+        type: String,
         match: [
             /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
             'please use a valid URL with HTTP or HTTPS'
         ]
     },
     phone: {
-        type: string,
+        type: String,
         maxlength: [20, 'phone number cannot be longer then 20 characters']
     },
     email: {
-        type: string,
+        type: String,
         match: [
             /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
             'please add a valid email address'
         ]
     },
     address: {
-        type: string,
+        type: String,
         required: [true, 'please add an address']
     },
     location: {
@@ -41,11 +41,11 @@ const BootcampSchema = new mongoose.Schema({
         type: {
             type: String, // Don't do `{ location: { type: String } }`
             enum: ['Point'], // 'location.type' must be 'Point'
-            required: true
+            //required: true
           },
           coordinates: {
             type: [Number],
-            required: true,
+            //required: true,
             index: '2dsphere'
           },
           formattedAddress: String,
