@@ -100,6 +100,12 @@ const BootcampSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+}, {toJSON: {
+    virtuals: true
+},
+    toObject: {
+        virtuals: true
+    }
 });
 
 //Create Bootcamp slug from schema
@@ -128,6 +134,14 @@ BootcampSchema.pre('save', async function(next) {
     next();
 })
 
+
+// Reverse Populate with schema
+BootcampSchema.virtual('courses', {
+    ref: 'Course',
+    localField: '_id',
+    foreignField: 'bootcamp',
+    justOne: false
+});
 
 module.exports = mongoose.model('Bootcamp', BootcampSchema);
 
